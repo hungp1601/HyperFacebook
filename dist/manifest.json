@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "HyperFacebook",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Download Facebook videos you have permission to view, and remember their volume.",
   "permissions": [
     "activeTab",

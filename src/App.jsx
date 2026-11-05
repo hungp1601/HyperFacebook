@@ -6,14 +6,13 @@ const MESSAGE_TOOLS = [
   { key: "blockSeen", label: "Block seen" },
   { key: "blockTyping", label: "Block typing" },
   { key: "blockStory", label: "Block story seen" },
-  { key: "debug", label: "Debug log (page console)" },
 ];
 
 function MessageTools({ onBack }) {
-  const [settings, setSettings] = useState({ blockSeen: false, blockTyping: false, blockStory: false, debug: false });
+  const [settings, setSettings] = useState({ blockSeen: false, blockTyping: false, blockStory: false });
 
   useEffect(() => {
-    chrome.storage.local.get({ blockSeen: false, blockTyping: false, blockStory: false, debug: false }, setSettings);
+    chrome.storage.local.get({ blockSeen: false, blockTyping: false, blockStory: false }, setSettings);
   }, []);
 
   const toggle = (key) => {

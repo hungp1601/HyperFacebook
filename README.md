@@ -10,9 +10,8 @@ A Chrome extension (Manifest V3) for Facebook, Messenger, Instagram and Threads.
   - **Block seen** – stops read receipts from being sent.
   - **Block typing** – stops the typing indicator from being sent.
   - **Block story seen** – stops story views from being recorded (Facebook, Instagram; Threads has no stories).
-  - **Debug log** – prints outgoing requests to the page console (`[HyperFacebook] sent/BLOCKED …`) to help adjust patterns.
 
-Message tools work by dropping matching outgoing requests (fetch, XHR, beacons, WebSocket frames, including those sent from workers). The sites change their internal request names often, so a pattern may stop matching; use the debug log to find the new name and update the regexes in `public/msg-main.js`.
+Message tools work by dropping matching outgoing requests (fetch, XHR, beacons, WebSocket frames, including those sent from workers). The sites change their internal request names often, so a pattern may stop matching; watch the Network tab in DevTools to find the new name and update the regexes in `public/msg-main.js`.
 
 Only Block seen on Instagram has been verified so far.
 

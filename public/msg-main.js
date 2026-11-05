@@ -2,7 +2,7 @@
 // Also patches Workers, because Instagram/Messenger open their chat socket there.
 (() => {
   function core(g, isWorker, init) {
-    const state = Object.assign({ blockSeen: false, blockTyping: false, blockStory: false, debug: false }, init);
+    const state = Object.assign({ blockSeen: false, blockTyping: false, blockStory: false }, init);
     const bc = new BroadcastChannel("hyperfb-state");
     bc.onmessage = (e) => Object.assign(state, e.data);
     if (!isWorker) {
@@ -32,17 +32,10 @@
       return "";
     };
 
-    const log = (kind, text, hit) => {
-      if (state.debug) console.log(`[HyperFacebook] ${hit ? "BLOCKED" : "sent"} ${kind}:`, text.length > 600 ? text.slice(0, 200) + " … " + (text.match(/fb_api_req_friendly_name=[^&]*|doc_id=\d+/g) || []).join(" ") + " … " + text.slice(-300) : text);
-    };
-    const blocked = (kind, text) => {
-      const hit =
+    const blocked = (kind, text) =>
         (state.blockStory && STORY.test(text)) ||
         (state.blockSeen && SEEN.test(text)) ||
         (state.blockTyping && TYPING.test(text));
-      log(kind, text, hit);
-      return hit;
-    };
 
     if (g.fetch) {
       const orig = g.fetch;

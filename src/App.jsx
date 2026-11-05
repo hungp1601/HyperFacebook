@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { extractInPage } from "./extract.js";
+import Tools from "./Tools.jsx";
 
 const FEATURES = [{ key: "volumeEnabled", label: "Remember video volume" }];
 const MESSAGE_TOOLS = [
@@ -104,6 +105,7 @@ export default function App() {
     chrome.storage.local.set({ [key]: value });
   };
 
+  if (view === "fb" || view === "ig") return <Tools site={view} onBack={() => setView("home")} />;
   if (view === "messages") return <MessageTools onBack={() => setView("home")} />;
   if (view === "videos") return <Videos onBack={() => setView("home")} />;
 
@@ -115,6 +117,12 @@ export default function App() {
           <span>Find videos</span>
           <span className="chev">›</span>
         </button>
+        {[["fb", "Facebook tools"], ["ig", "Instagram tools"]].map(([site, label]) => (
+          <button className="row" key={site} onClick={() => setView(site)}>
+            <span>{label}</span>
+            <span className="chev">›</span>
+          </button>
+        ))}
         <button className="row" onClick={() => setView("messages")}>
           <span>Message tools</span>
           <span className="chev">›</span>

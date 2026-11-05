@@ -1,0 +1,11 @@
+[
+  { "id": 1, "priority": 1, "action": { "type": "block" },
+    "condition": { "urlFilter": "||connect.facebook.net/", "resourceTypes": ["script"],
+                   "excludedInitiatorDomains": ["facebook.com", "instagram.com", "messenger.com", "threads.com", "threads.net"] } },
+  { "id": 2, "priority": 1, "action": { "type": "block" },
+    "condition": { "urlFilter": "||facebook.com/tr", "resourceTypes": ["image", "xmlhttprequest", "ping", "script", "other", "sub_frame"],
+                   "excludedInitiatorDomains": ["facebook.com", "instagram.com", "messenger.com", "threads.com", "threads.net"] } },
+  { "id": 3, "priority": 1, "action": { "type": "block" },
+    "condition": { "urlFilter": "||facebook.net/signals/", "resourceTypes": ["script", "xmlhttprequest", "other"],
+                   "excludedInitiatorDomains": ["facebook.com", "instagram.com", "messenger.com", "threads.com", "threads.net"] } }
+]

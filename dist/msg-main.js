@@ -2,7 +2,7 @@
 // Also patches Workers, because Instagram/Messenger open their chat socket there.
 (() => {
   function core(g, isWorker, init) {
-    const state = Object.assign({ blockSeen: false, blockTyping: false, blockStory: false }, init);
+    const state = Object.assign({ blockSeen: false, blockTyping: false, blockStory: false, blockRefresh: false }, init);
     const bc = new BroadcastChannel("hyperfb-state");
     bc.onmessage = (e) => Object.assign(state, e.data);
     if (!isWorker) {
@@ -85,6 +85,19 @@
   }
 
   const pageState = core(window, false);
+
+  // Facebook refreshes the feed when you come back to the tab; swallow those wake-up events.
+  if (/(^|\.)facebook\.com$/.test(location.hostname)) {
+    const stop = (e) => { if (pageState.blockRefresh) e.stopImmediatePropagation(); };
+    document.addEventListener("visibilitychange", stop, true);
+    window.addEventListener("focus", stop, true);
+    window.addEventListener("pageshow", stop, true);
+    window.addEventListener("online", stop, true);
+    new MutationObserver(() => {
+      if (!pageState.blockRefresh) return;
+      document.querySelectorAll('meta[http-equiv="refresh" i]').forEach((m) => m.remove());
+    }).observe(document, { childList: true, subtree: true });
+  }
 
   // Run the same patch inside classic workers created by the page.
   const wrap = (Ctor) => {

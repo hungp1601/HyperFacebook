@@ -7,7 +7,8 @@
     "activeTab",
     "scripting",
     "downloads",
-    "storage"
+    "storage",
+    "declarativeNetRequest"
   ],
   "host_permissions": [
     "https://*.facebook.com/*",
@@ -72,5 +73,14 @@
     "32": "icons/icon-32.png",
     "48": "icons/icon-48.png",
     "128": "icons/icon-128.png"
+  },
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "id": "pixel",
+        "enabled": false,
+        "path": "rules/pixel.json"
+      }
+    ]
   }
 }

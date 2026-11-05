@@ -26,7 +26,9 @@ npm run dev        # rebuild on change
 
 ## Install
 
-The prebuilt extension is committed in `dist/`, so you can skip the build.
+Download `HyperFacebook-<version>.zip` from the [Releases](https://github.com/hungp1601/HyperFacebook/releases) page, unzip it and load that folder. (Releases are built automatically when a `v*` tag is pushed.)
+
+The prebuilt extension is also committed in `dist/`, so you can skip the build.
 
 1. Open `chrome://extensions` and enable **Developer mode**.
 2. Click **Load unpacked** and select the `dist/` folder.

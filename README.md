@@ -26,6 +26,8 @@ npm run dev        # rebuild on change
 
 ## Install
 
+The prebuilt extension is committed in `dist/`, so you can skip the build.
+
 1. Open `chrome://extensions` and enable **Developer mode**.
 2. Click **Load unpacked** and select the `dist/` folder.
 3. After changing a toggle, reload the Facebook / Instagram tab.

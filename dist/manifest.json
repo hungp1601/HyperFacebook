@@ -1,0 +1,76 @@
+{
+  "manifest_version": 3,
+  "name": "HyperFacebook",
+  "version": "1.1.0",
+  "description": "Download Facebook videos you have permission to view, and remember their volume.",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "downloads",
+    "storage"
+  ],
+  "host_permissions": [
+    "https://*.facebook.com/*",
+    "https://*.fbcdn.net/*",
+    "https://*.messenger.com/*",
+    "https://*.instagram.com/*",
+    "https://*.threads.com/*",
+    "https://*.threads.net/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://*.facebook.com/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_start"
+    },
+    {
+      "matches": [
+        "https://*.facebook.com/*",
+        "https://*.messenger.com/*",
+        "https://*.instagram.com/*",
+        "https://*.threads.com/*",
+        "https://*.threads.net/*"
+      ],
+      "js": [
+        "msg-main.js"
+      ],
+      "run_at": "document_start",
+      "world": "MAIN",
+      "all_frames": true
+    },
+    {
+      "matches": [
+        "https://*.facebook.com/*",
+        "https://*.messenger.com/*",
+        "https://*.instagram.com/*",
+        "https://*.threads.com/*",
+        "https://*.threads.net/*"
+      ],
+      "js": [
+        "msg-bridge.js"
+      ],
+      "run_at": "document_start",
+      "all_frames": true
+    }
+  ],
+  "action": {
+    "default_popup": "index.html",
+    "default_title": "HyperFacebook",
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "32": "icons/icon-32.png",
+      "48": "icons/icon-48.png",
+      "128": "icons/icon-128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon-16.png",
+    "32": "icons/icon-32.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  }
+}
